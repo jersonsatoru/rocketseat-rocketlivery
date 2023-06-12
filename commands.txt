@@ -5,4 +5,12 @@ IEX
 CURL
 
 create_user
-curl -X POST localhost:4000/api/users -H "content-type: application/json" --data-raw '{"age": 18, "name": "Jerson Satoru Uyekita", "email": "jersonsatoru@yahoo.com.br", "address": "Rua Senador Dantas, 15", "cep": "08880100", "cpf": "37013403822"}'
+curl -X POST "localhost:4000/api/users" \
+-H "content-type: application/json" \
+--data-raw '{"age": 18, "name": "Jerson Satoru Uyekita", "email": "jersonsatoru@yahoo.com.br", "address": "Rua Senador Dantas, 15", "cep": "08880100", "cpf": "37013403822", "password": "123456"}'
+
+find_user_by_id
+curl "localhost:4000/api/users/{id}" 
+
+delete_user
+curl -X DELETE "localhost:4000/api/users/{id}" 

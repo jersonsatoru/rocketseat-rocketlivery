@@ -9,7 +9,15 @@ defmodule RocketliveryWeb.FallbackController do
     conn
       |> put_status(status)
       |> json(%{
-        message: translate_errors(result)
+        message: translate_errors(result),
+      })
+  end
+
+  def call(conn, {:error, %{status: status, result: result}}) do
+    conn
+      |> put_status(status)
+      |> json(%{
+        message: result,
       })
   end
 
