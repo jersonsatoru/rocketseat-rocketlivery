@@ -46,8 +46,10 @@ defmodule RocketliveryWeb.UserController do
     end
   end
 
+
+  @spec delete(any, map) :: {:error, Rocketlivery.Error.t()} | Plug.Conn.t()
   def delete(conn, %{"id" => id}) do
-    with :ok <- Rocketlivery.delete_user(id) do
+    with {:ok, _} <- Rocketlivery.delete_user(id) do
       conn
         |> put_status(:no_content)
         |> text("")

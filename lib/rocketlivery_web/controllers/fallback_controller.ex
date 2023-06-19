@@ -5,7 +5,7 @@ defmodule RocketliveryWeb.FallbackController do
 
   use RocketliveryWeb, :controller
 
-  def call(conn, {:error, %{status: status, result: %Changeset{} = result}}) do
+  def call(conn, {:error, %Rocketlivery.Error{status: status, result: %Changeset{} = result}}) do
     conn
       |> put_status(status)
       |> json(%{
@@ -13,7 +13,7 @@ defmodule RocketliveryWeb.FallbackController do
       })
   end
 
-  def call(conn, {:error, %{status: status, result: result}}) do
+  def call(conn, {:error, %Rocketlivery.Error{status: status, result: result}}) do
     conn
       |> put_status(status)
       |> json(%{

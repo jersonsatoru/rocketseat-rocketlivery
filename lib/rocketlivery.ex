@@ -17,6 +17,6 @@ defmodule Rocketlivery do
   @spec find_user_by_id(String.t()) :: User.t()
   defdelegate find_user_by_id(id), to: FindUserById, as: :call
 
-  @spec delete_user(String.t()) :: atom()
+  @spec delete_user(binary) :: {:error, Rocketlivery.Error.t()} | {:ok, any}
   defdelegate delete_user(id), to: DeleteUser, as: :call
 end
