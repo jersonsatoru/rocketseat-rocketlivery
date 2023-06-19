@@ -2,6 +2,9 @@ IEX
 
 %{age: 18, name: "Jerson Satoru", email: "jersonsatoru@yahoo.com.br", address: "Rua Senador Dantas", cpf: "37013403822", cep: "08880100", password: "123456"}
 
+%{"id" => "27acf0e1-25bf-4910-b728-98a064dd173a", "age" => 18, "name" => "Jerson Satoru", "email" => "jersonsatoru@yahoo.com.br", "address" => "Rua Senador Dantas", "cpf" => "37013403822", "cep" => "08880100", "password" => "123456"}
+
+
 CURL
 
 create_user

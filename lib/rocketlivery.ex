@@ -9,6 +9,7 @@ defmodule Rocketlivery do
   alias Rocketlivery.Users.Create, as: UserCreate
   alias Rocketlivery.Users.FindUserById, as: FindUserById
   alias Rocketlivery.Users.Delete, as: DeleteUser
+  alias Rocketlivery.Users.Update, as: UpdateUser
 
   @spec create_user(:invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
           any
@@ -19,4 +20,7 @@ defmodule Rocketlivery do
 
   @spec delete_user(binary) :: {:error, Rocketlivery.Error.t()} | {:ok, any}
   defdelegate delete_user(id), to: DeleteUser, as: :call
+
+  @spec update_user(map) :: {:ok, User.t()} | {:error, any}
+  defdelegate update_user(params), to: UpdateUser, as: :call
 end

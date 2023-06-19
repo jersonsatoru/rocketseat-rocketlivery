@@ -25,8 +25,8 @@ defmodule Rocketlivery.User do
 
   @spec changeset(:invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
           Ecto.Changeset.t()
-  def changeset(params) do
-    %__MODULE__{}
+  def changeset(struct \\ %__MODULE__{}, params) do
+    struct
       |> cast(params, @required_params)
       |> validate_required(@required_params)
       |> validate_inclusion(:age, 18..120)

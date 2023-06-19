@@ -2,6 +2,7 @@ defmodule RocketliveryWeb.UserController do
   use RocketliveryWeb, :controller
 
   alias RocketliveryWeb.FallbackController
+
   alias Rocketlivery.User
 
   action_fallback FallbackController
@@ -33,7 +34,7 @@ defmodule RocketliveryWeb.UserController do
         |> put_status(:ok)
         |> json(%{
             message: "User found successfully",
-            user: [%{
+            user: %{
               id: user.id,
               name: user.name,
               email: user.email,
@@ -41,18 +42,37 @@ defmodule RocketliveryWeb.UserController do
               cpf: user.cpf,
               cep: user.cep,
               age: user.age
-            }]
+            }
           })
     end
   end
 
-
-  @spec delete(any, map) :: {:error, Rocketlivery.Error.t()} | Plug.Conn.t()
+  @spec delete(Plug.Conn.t(), map) :: Plug.Conn.t()
   def delete(conn, %{"id" => id}) do
     with {:ok, _} <- Rocketlivery.delete_user(id) do
       conn
         |> put_status(:no_content)
         |> text("")
+    end
+  end
+
+  @spec update(Plug.Conn.t(), map) :: Plug.Conn.t()
+  def update(conn, params) do
+    with {:ok, %User{} = user} <- Rocketlivery.update_user(params) do
+      conn
+        |> put_status(:ok)
+        |> json(%{
+          message: "User updated successfully",
+          user: %User{
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            address: user.address,
+            cpf: user.cpf,
+            cep: user.cep,
+            age: user.age
+          }
+        })
     end
   end
 end
