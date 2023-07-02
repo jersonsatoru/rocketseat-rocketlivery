@@ -9,7 +9,14 @@ defmodule Rocketlivery.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -44,7 +51,10 @@ defmodule Rocketlivery.MixProject do
 
       {:pbkdf2_elixir, "~> 2.0"},
 
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+
+      {:excoveralls, "~> 0.10", only: :test},
+      {:ex_machina, "~> 2.7.0"},
     ]
   end
 

@@ -1,20 +1,11 @@
 defmodule Rocketlivery.Users.Update do
 
-  alias Rocketlivery.{User, Repo, Error}
+  alias Rocketlivery.{User, Repo}
 
   def call(params) do
-    with {:ok, _} <- validate_uuid(params),
-         {:ok, %User{} = user} <- update_user(params) do
-      {:ok, user}
-    else
+    case update_user(params) do
+      {:ok, %User{} = user} -> {:ok, user}
       {:error, result} -> {:error, result}
-    end
-  end
-
-  defp validate_uuid(%{"id" => id}) do
-    case Ecto.UUID.cast(id) do
-      {:ok, _} = result -> result
-      :error -> {:error, Error.build_invalid_uuid_format_error}
     end
   end
 
