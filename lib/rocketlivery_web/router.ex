@@ -11,5 +11,7 @@ defmodule RocketliveryWeb.Router do
     pipe_through :api
 
     resources "/users", UserController, except: [:new, :edit]
+
+    resources "/items", ItemController, except: [:new, :edit]
   end
 end

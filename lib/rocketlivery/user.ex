@@ -23,8 +23,7 @@ defmodule Rocketlivery.User do
     timestamps()
   end
 
-  @spec changeset(:invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
-          Ecto.Changeset.t()
+  @spec changeset(map) :: Ecto.Changeset.t()
   def changeset(struct \\ %__MODULE__{}, params) do
     struct
       |> cast(params, @required_params)

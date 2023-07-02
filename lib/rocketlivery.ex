@@ -6,13 +6,14 @@ defmodule Rocketlivery do
   Contexts are also responsible for managing your data, regardless
   if it comes from the database, an external API or others.
   """
+  alias URI.Error
   alias Rocketlivery.Users.Create, as: UserCreate
   alias Rocketlivery.Users.FindUserById, as: FindUserById
   alias Rocketlivery.Users.Delete, as: DeleteUser
   alias Rocketlivery.Users.Update, as: UpdateUser
+  alias Rocketlivery.Items.Create, as: ItemCreate
 
-  @spec create_user(:invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
-          any
+  @spec create_user(map) :: {:ok, Item.t()} | {:error, any}
   defdelegate create_user(params), to: UserCreate, as: :call
 
   @spec find_user_by_id(String.t()) :: User.t()
@@ -23,4 +24,7 @@ defmodule Rocketlivery do
 
   @spec update_user(map) :: {:ok, User.t()} | {:error, any}
   defdelegate update_user(params), to: UpdateUser, as: :call
+
+  @spec create_item(map) :: {:ok, Item.t()} | {:error, Error.t()}
+  defdelegate create_item(params), to: ItemCreate, as: :call
 end

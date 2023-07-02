@@ -22,3 +22,8 @@ update_user
 curl -X PUT "localhost:4000/api/users/{id}" \
 -H "content-type: application/json" \
 --data-raw '{"age": 18, "name": "Jerson Satoru Uyekita", "email": "jersonsatoru@yahoo.com.br", "address": "Rua Senador Dantas, 15", "cep": "08880100", "cpf": "37013403822", "password": "123456"}'
+
+create_item
+curl -X POST "localhost:4000/api/items" \
+-H "content-type: application/json" \
+--data-raw '{"photo": "batata.png", "description": "Sensacional", "price": 12.00, "category": "food"}'
