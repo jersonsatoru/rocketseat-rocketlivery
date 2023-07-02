@@ -3,6 +3,8 @@ defmodule Rocketlivery.User do
 
   import Ecto.Changeset
 
+  alias Rocketlivery.Order
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:age, :name, :email, :address, :cep, :cpf, :password]
@@ -20,6 +22,9 @@ defmodule Rocketlivery.User do
     field :email, :string
     field :password_hash, :string
     field :password, :string, virtual: true
+
+    has_many :orders, Order
+
     timestamps()
   end
 
