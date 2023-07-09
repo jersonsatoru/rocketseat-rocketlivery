@@ -1,4 +1,5 @@
 defmodule Rocketlivery.Factory do
+  alias Rocketlivery.Item
   alias Rocketlivery.User
 
   use ExMachina.Ecto, repo: Rocketlivery.Repo
@@ -25,6 +26,16 @@ defmodule Rocketlivery.Factory do
       cpf: "37013403822",
       email: "jersonsatoru@yahoo.com.br",
       password: "123456"
+    }
+  end
+
+  def item_factory do
+    %Item{
+      category: :food,
+      description: "Feijoada",
+      photo: "banana.png",
+      price: 20.00,
+      id: "56bf846a-1080-45cc-bb7f-e766ece59a32"
     }
   end
 end

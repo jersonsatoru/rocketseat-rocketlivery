@@ -1,5 +1,6 @@
 defmodule RocketliveryWeb.Router do
   alias RocketliveryWeb.Plugs.UUIDChecker
+
   use RocketliveryWeb, :router
 
   pipeline :api do
@@ -13,5 +14,7 @@ defmodule RocketliveryWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
 
     resources "/items", ItemController, except: [:new, :edit]
+
+    resources "/orders", OrderController, except: [:new, :edit]
   end
 end
