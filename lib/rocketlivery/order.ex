@@ -8,6 +8,8 @@ defmodule Rocketlivery.Order do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
+  @foreign_key_type :binary_id
+
   @required_params [:comment, :address, :payment_method, :user_id]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
@@ -19,11 +21,13 @@ defmodule Rocketlivery.Order do
     field :payment_method, Enum, values: @payment_methods
     field :address, :string
 
-    many_to_many :items, Item, join_through: "orders_items"
+    many_to_many :items, Item, join_through: "order_items"
     belongs_to :user, User
+
+    timestamps()
   end
 
-  @spec changeset(Order.t() | Changeset, list(Item.t)) :: Changeset | Order.t()
+  @spec changeset(Order.t() | Changeset, list(Item.t())) :: Changeset | Order.t()
   def changeset(struct \\ %__MODULE__{}, params, items) do
     struct
     |> cast(params, @required_params)

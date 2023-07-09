@@ -5,15 +5,17 @@ defmodule RocketliveryWeb.UserControllerTest do
 
   describe "create" do
     test "when all params are valid should create a new user", %{conn: conn} do
-      response = conn
-      |> post(~p"/api/users", build(:user_params))
-      |> json_response(:created)
+      response =
+        conn
+        |> post(~p"/api/users", build(:user_params))
+        |> json_response(:created)
 
       assert %{"user" => %{"name" => _}} = response
     end
 
     test "when some params are invalid should return error", %{conn: conn} do
-      response = conn
+      response =
+        conn
         |> post(~p"/api/users", build(:user_params, %{"age" => 15}))
         |> json_response(:bad_request)
 
@@ -24,6 +26,7 @@ defmodule RocketliveryWeb.UserControllerTest do
   describe "delete" do
     test "when there is a user with the given ID", %{conn: conn} do
       insert(:user)
+
       response =
         conn
         |> delete(~p"/api/users/56bf846a-1080-45cc-bb7f-e766ece59a33")

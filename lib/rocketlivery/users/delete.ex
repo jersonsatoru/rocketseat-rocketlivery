@@ -15,7 +15,7 @@ defmodule Rocketlivery.Users.Delete do
   defp get_user_by_id(id) do
     case Repo.get(User, id) do
       %User{} = user -> {:ok, user}
-      nil -> {:error, Error.build_user_not_found_error}
+      nil -> {:error, Error.build_user_not_found_error()}
     end
   end
 

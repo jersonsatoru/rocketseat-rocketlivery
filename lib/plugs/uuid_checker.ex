@@ -18,8 +18,8 @@ defmodule RocketliveryWeb.Plugs.UUIDChecker do
     body = Jason.encode!(%{"message" => "Invalid UUID format"})
 
     conn
-      |> put_resp_content_type("application/json")
-      |> send_resp(:bad_request, body)
-      |> halt()
+    |> put_resp_content_type("application/json")
+    |> send_resp(:bad_request, body)
+    |> halt()
   end
 end

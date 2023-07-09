@@ -2,7 +2,7 @@ defmodule Rocketlivery.Repo.Migrations.CreateOrdersTable do
   use Ecto.Migration
 
   def change do
-    create table :orders do
+    create table(:orders) do
       add :address, :string
       add :comment, :string
       add :payment_method, :payment_method

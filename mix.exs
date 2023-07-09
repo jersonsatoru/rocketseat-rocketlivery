@@ -48,13 +48,10 @@ defmodule Rocketlivery.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-
       {:pbkdf2_elixir, "~> 2.0"},
-
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-
       {:excoveralls, "~> 0.10", only: :test},
-      {:ex_machina, "~> 2.7.0"},
+      {:ex_machina, "~> 2.7.0"}
     ]
   end
 

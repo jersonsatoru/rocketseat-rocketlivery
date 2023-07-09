@@ -6,14 +6,14 @@ defmodule Rocketlivery.Users.Create do
           Error.t() | {:ok, any}
   def call(params) do
     params
-      |> User.changeset()
-      |> Repo.insert()
-      |> handle_user_insert()
+    |> User.changeset()
+    |> Repo.insert()
+    |> handle_user_insert()
   end
 
   defp handle_user_insert({:ok, _} = result), do: result
 
   defp handle_user_insert({:error, %Changeset{} = changeset}) do
-    {:error, %Error{status: :bad_request, result: changeset }}
+    {:error, %Error{status: :bad_request, result: changeset}}
   end
 end

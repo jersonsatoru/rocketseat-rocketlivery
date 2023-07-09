@@ -31,18 +31,20 @@ defmodule Rocketlivery.User do
   @spec changeset(map) :: Ecto.Changeset.t()
   def changeset(struct \\ %__MODULE__{}, params) do
     struct
-      |> cast(params, @required_params)
-      |> validate_required(@required_params)
-      |> validate_inclusion(:age, 18..120)
-      |> validate_length(:cep, is: 8)
-      |> validate_length(:cpf, is: 11)
-      |> validate_format(:email, ~r/\w+@/)
-      |> unique_constraint([:email])
-      |> unique_constraint([:cpf])
-      |> put_password_hash()
+    |> cast(params, @required_params)
+    |> validate_required(@required_params)
+    |> validate_inclusion(:age, 18..120)
+    |> validate_length(:cep, is: 8)
+    |> validate_length(:cpf, is: 11)
+    |> validate_format(:email, ~r/\w+@/)
+    |> unique_constraint([:email])
+    |> unique_constraint([:cpf])
+    |> put_password_hash()
   end
 
-  defp put_password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+  defp put_password_hash(
+         %Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset
+       ) do
     change(changeset, Pbkdf2.add_hash(password))
   end
 

@@ -1,5 +1,4 @@
 defmodule Rocketlivery.Error do
-
   @keys [:status, :result]
 
   @enforce_keys @keys
@@ -7,16 +6,16 @@ defmodule Rocketlivery.Error do
   @type status :: atom()
   @type result :: any()
   @type t :: %__MODULE__{
-    status: status,
-    result: result,
-  }
+          status: status,
+          result: result
+        }
   defstruct @keys
 
   @spec build(atom(), any()) :: Rocketlivery.Error.t()
   def build(status, result) do
     %__MODULE__{
       status: status,
-      result: result,
+      result: result
     }
   end
 

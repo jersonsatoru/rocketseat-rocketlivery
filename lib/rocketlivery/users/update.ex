@@ -1,5 +1,4 @@
 defmodule Rocketlivery.Users.Update do
-
   alias Rocketlivery.{User, Repo}
 
   def call(params) do
@@ -11,7 +10,7 @@ defmodule Rocketlivery.Users.Update do
 
   defp update_user(%{"id" => id} = params) do
     Repo.get(User, id)
-      |> User.changeset(params)
-      |> Repo.update()
+    |> User.changeset(params)
+    |> Repo.update()
   end
 end

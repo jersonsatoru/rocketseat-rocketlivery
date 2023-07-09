@@ -27,3 +27,6 @@ create_item
 curl -X POST "localhost:4000/api/items" \
 -H "content-type: application/json" \
 --data-raw '{"photo": "batata.png", "description": "Sensacional", "price": 12.00, "category": "food"}'
+
+create order
+Rocketlivery.Orders.Create.call(%{"items" => [%{"id" => "1c729d29-5c1c-4560-a270-ccb394bfdb03", "quantity" => 2}], "comment" => "Interessante", "payment_method" => "money", "address" => "Rua Senador Dantas, 15, Centro, Mogi das Cruzes", "user_id" => "27acf0e1-25bf-4910-b728-98a064dd173a"})
