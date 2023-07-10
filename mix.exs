@@ -55,6 +55,7 @@ defmodule Rocketlivery.MixProject do
       {:tesla, "~> 1.4"},
       {:hackney, "~> 1.17"},
       {:mox, "~> 1.0", only: :test},
+      {:guardian, "~> 2.0"},
     ]
   end
 

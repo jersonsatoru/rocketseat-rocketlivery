@@ -40,6 +40,10 @@ config :rocketlivery,
   Rocketlivery.Users.Create,
   zipcode_gateway_adapter: ZipcodeGateway.Client
 
+config :rocketlivery, RocketliveryWeb.Auth.Guardian,
+      issuer: "rocketlivery",
+      secret_key: System.get_env("JWT_SECRET_KEY")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

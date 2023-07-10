@@ -5,15 +5,19 @@ defmodule RocketliveryWeb.UserController do
 
   alias Rocketlivery.User
 
+  alias RocketliveryWeb.Auth.Guardian
+
   action_fallback FallbackController
 
   @spec create(Plug.Conn.t(), any) :: Plug.Conn.t()
   def create(conn, params) do
-    with {:ok, %User{} = user} <- Rocketlivery.create_user(params) do
+    with {:ok, %User{} = user} <- Rocketlivery.create_user(params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
       conn
       |> put_status(:created)
       |> json(%{
         message: "User created successfully",
+        token: token,
         user: %{
           id: user.id,
           name: user.name,
@@ -72,6 +76,17 @@ defmodule RocketliveryWeb.UserController do
           cep: user.cep,
           age: user.age
         }
+      })
+    end
+  end
+
+  def signin(conn, params) do
+    with {:ok, token} <- Rocketlivery.user_signin(params) do
+      conn
+      |> put_status(:ok)
+      |> json(%{
+        message: "Sign in successful",
+        token: token,
       })
     end
   end

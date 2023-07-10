@@ -13,6 +13,8 @@ defmodule RocketliveryWeb.Router do
 
     resources "/users", UserController, except: [:new, :edit]
 
+    post "/users/signin", UserController, :signin
+
     resources "/items", ItemController, except: [:new, :edit]
 
     resources "/orders", OrderController, except: [:new, :edit]
