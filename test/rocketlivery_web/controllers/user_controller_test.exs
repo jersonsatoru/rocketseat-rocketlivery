@@ -2,9 +2,14 @@ defmodule RocketliveryWeb.UserControllerTest do
   use RocketliveryWeb.ConnCase
 
   import Rocketlivery.Factory
+  import Mox
 
   describe "create" do
     test "when all params are valid should create a new user", %{conn: conn} do
+      expect(ZipcodeGateway.ClientMock, :get_address_information_by_zipcode, fn _cep ->
+        {:ok, build(:zipcode_gateway)}
+      end)
+
       response =
         conn
         |> post(~p"/api/users", build(:user_params))

@@ -38,4 +38,13 @@ defmodule Rocketlivery.Factory do
       id: "56bf846a-1080-45cc-bb7f-e766ece59a32"
     }
   end
+
+  def zipcode_gateway_factory do
+    %ZipcodeGateway.Client{
+      state: "SP",
+      city: "Mogi das Cruzes",
+      address: "Rua Senador Dantas, 15",
+      district: "Centro"
+    }
+  end
 end

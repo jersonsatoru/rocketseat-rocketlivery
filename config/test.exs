@@ -25,3 +25,6 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :rocketlivery, Rocketlivery.Users.Create,
+  zipcode_gateway_adapter: ZipcodeGateway.ClientMock

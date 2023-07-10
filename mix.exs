@@ -51,7 +51,10 @@ defmodule Rocketlivery.MixProject do
       {:pbkdf2_elixir, "~> 2.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
-      {:ex_machina, "~> 2.7.0"}
+      {:ex_machina, "~> 2.7.0"},
+      {:tesla, "~> 1.4"},
+      {:hackney, "~> 1.17"},
+      {:mox, "~> 1.0", only: :test},
     ]
   end
 
